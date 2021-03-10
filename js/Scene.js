@@ -4,6 +4,8 @@ export default class Scene {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.sprites = [];
+    this.t0 = 0;
+    this.dt = 0;
   }
 
   draw() {
@@ -21,7 +23,17 @@ export default class Scene {
 
   step(dt) {
     for (const sprite of this.sprites) {
-      sprite.step(dt)
+      sprite.step(dt);
     }
+  }
+
+  frame(t) {
+    this.t0 = this.t0 ?? t;
+    this.dt = (t - this.t0) / 1000;
+
+    this.step(this.dt);
+    this.draw();
+
+    this.t0 = t;
   }
 }
