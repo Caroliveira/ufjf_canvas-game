@@ -37,6 +37,7 @@ export default class Scene {
     this.draw();
 
     this.checkCrash();
+    this.removeSprites();
 
     this.initiate();
     this.t0 = t;
@@ -70,5 +71,15 @@ export default class Scene {
     if (!this.toRemove.includes(b)) {
       this.toRemove.push(b);
     }
+  }
+
+  removeSprites() {
+    for (const target of this.toRemove) {
+      const idx = this.sprites.indexOf(target);
+      if (idx >= 0) {
+        this.sprites.splice(idx, 1);
+      }
+    }
+    this.toRemove = [];
   }
 }

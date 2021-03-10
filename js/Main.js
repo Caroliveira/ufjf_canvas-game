@@ -7,9 +7,11 @@ const scene1 = new Scene(canvas);
 
 const pc = new Sprite({ vx: 10 });
 const en1 = new Sprite({ x: 140, w: 30, color: "red" });
+const en2 = new Sprite({ y: 40, w: 30, color: "red" });
 
 scene1.addSprite(pc);
 scene1.addSprite(en1);
+scene1.addSprite(en2);
 
 scene1.initiate();
 document.addEventListener("keydown", (evt) => {
