@@ -4,6 +4,7 @@ export default class Scene {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.sprites = [];
+    this.toRemove = [];
     this.t0 = 0;
     this.dt = 0;
     this.idAnim = null;
@@ -55,10 +56,19 @@ export default class Scene {
       const spriteA = this.sprites[a];
       for (let b = a + 1; b < this.sprites.length; b++) {
         const spriteB = this.sprites[b];
-        if(spriteA.crash(spriteB)) {
-          console.log(spriteA, spriteB)
+        if (spriteA.crash(spriteB)) {
+          this.onCrash(spriteA, spriteB);
         }
       }
+    }
+  }
+
+  onCrash(a, b) {
+    if (!this.toRemove.includes(a)) {
+      this.toRemove.push(a);
+    }
+    if (!this.toRemove.includes(b)) {
+      this.toRemove.push(b);
     }
   }
 }
