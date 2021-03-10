@@ -8,10 +8,6 @@ assets.loadImage("girl", "assets/girl.png");
 assets.loadImage("skelly", "assets/skelly.png");
 assets.loadImage("orc", "assets/orc.png");
 
-document.body.appendChild(assets.getImage("girl"));
-document.body.appendChild(assets.getImage("skelly"));
-document.body.appendChild(assets.getImage("orc"));
-
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 const scene1 = new Scene(canvas, assets);
