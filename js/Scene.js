@@ -35,6 +35,8 @@ export default class Scene {
     this.step(this.dt);
     this.draw();
 
+    this.checkCrash();
+
     this.initiate();
     this.t0 = t;
   }
@@ -46,5 +48,17 @@ export default class Scene {
   stop() {
     cancelAnimationFrame(this.idAnim);
     this.t0 = null;
+  }
+
+  checkCrash() {
+    for (let a = 0; a < this.sprites.length - 1; a++) {
+      const spriteA = this.sprites[a];
+      for (let b = a + 1; b < this.sprites.length; b++) {
+        const spriteB = this.sprites[b];
+        if(spriteA.crash(spriteB)) {
+          console.log(spriteA, spriteB)
+        }
+      }
+    }
   }
 }

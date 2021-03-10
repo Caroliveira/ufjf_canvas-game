@@ -27,4 +27,13 @@ export default class Sprite {
     this.x = this.x + this.vx * dt;
     this.y = this.y + this.vy * dt;
   }
+
+  crash(sprite) {
+    return !(
+      this.x > sprite.x + sprite.w ||
+      this.x + this.w < sprite.x ||
+      this.y > sprite.y + sprite.h ||
+      this.y + this.h < sprite.y
+    );
+  }
 }
