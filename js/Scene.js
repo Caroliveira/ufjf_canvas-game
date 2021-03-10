@@ -6,6 +6,7 @@ export default class Scene {
     this.sprites = [];
     this.t0 = 0;
     this.dt = 0;
+    this.idAnim = null;
   }
 
   draw() {
@@ -34,6 +35,16 @@ export default class Scene {
     this.step(this.dt);
     this.draw();
 
+    this.initiate();
     this.t0 = t;
+  }
+
+  initiate() {
+    this.idAnim = requestAnimationFrame((t) => this.frame(t));
+  }
+
+  stop() {
+    cancelAnimationFrame(this.idAnim);
+    this.t0 = null;
   }
 }
