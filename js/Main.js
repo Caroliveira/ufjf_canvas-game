@@ -25,11 +25,13 @@ scene1.configureMap(map1);
 
 const pc = new Sprite({ x: 50, vx: 10 });
 const en1 = new Sprite({ x: 160, vx: -10, color: "red" });
-const en2 = new Sprite({ y: 70, color: "red" });
+const en2 = new Sprite({ x: 115, y: 70, vy: 10, color: "red" });
+const en3 = new Sprite({ x: 115, y: 160, vy: -10, color: "red" });
 
 scene1.addSprite(pc);
 scene1.addSprite(en1);
 scene1.addSprite(en2);
+scene1.addSprite(en3);
 
 scene1.initiate();
 
