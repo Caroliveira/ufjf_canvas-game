@@ -3,15 +3,14 @@ import Mixer from "./Mixer.js";
 import Scene from "./Scene.js";
 import Sprite from "./Sprite.js";
 
-const assets = new AssetManager();
+const mixer = new Mixer(10);
+const assets = new AssetManager(mixer);
 
 assets.loadImage("girl", "assets/girl.png");
 assets.loadImage("skelly", "assets/skelly.png");
 assets.loadImage("orc", "assets/orc.png");
 assets.loadAudio("coin", "assets/coin.wav");
 assets.loadAudio("boom", "assets/boom.wav");
-
-const mixer = new Mixer(10);
 
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
@@ -35,10 +34,10 @@ document.addEventListener("keydown", (evt) => {
       scene1.stop();
       break;
     case "c":
-      mixer.play(assets.getAudio("coin"));
+      assets.play("coin");
       break;
     case "b":
-      mixer.play(assets.getAudio("boom"));
+      assets.play("boom");
       break;
   }
 });

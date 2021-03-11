@@ -1,17 +1,18 @@
 export default class AssetManager {
-  constructor() {
+  constructor(mixer = null) {
     this.toLoad = 0;
     this.loaded = 0;
     this.images = new Map();
     this.audios = new Map();
+    this.mixer = mixer;
   }
 
   loadImage(key, src) {
     const img = new Image();
     img.addEventListener("load", () => {
-        console.log(`imagem ${this.loaded}/${this.toLoad} carregada`)
-        this.loaded++;
-    })
+      console.log(`imagem ${this.loaded}/${this.toLoad} carregada`);
+      this.loaded++;
+    });
     img.src = src;
     this.images.set(key, img);
     this.toLoad++;
@@ -20,9 +21,9 @@ export default class AssetManager {
   loadAudio(key, src) {
     const audio = new Audio();
     audio.addEventListener("loadeddata", () => {
-        console.log(`áudio ${this.loaded}/${this.toLoad} carregado`)
-        this.loaded++;
-    })
+      console.log(`áudio ${this.loaded}/${this.toLoad} carregado`);
+      this.loaded++;
+    });
     audio.src = src;
     this.audios.set(key, audio);
     this.toLoad++;
@@ -44,6 +45,10 @@ export default class AssetManager {
   }
 
   finish() {
-      return this.loaded === this.toLoad;
+    return this.loaded === this.toLoad;
+  }
+
+  play(key) {
+    this.mixer?.play(this.getAudio(key));
   }
 }
