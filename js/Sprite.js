@@ -50,6 +50,11 @@ export default class Sprite {
   }
 
   applyRestrictions(dt) {
+    this.applyRestrictionsRight(dt);
+    this.applyRestrictionsLeft(dt);
+  }
+
+  applyRestrictionsRight(dt) {
     const SIZE = this.scene.map.SIZE;
     if (this.vx > 0) {
       const pmx = this.mx + 1;
@@ -66,6 +71,28 @@ export default class Sprite {
         if (this.crash(tile)) {
           this.vx = 0;
           this.x = tile.x - tile.w / 2 - this.w / 2 - 1;
+        }
+      }
+    }
+  }
+
+  applyRestrictionsLeft(dt) {
+    const SIZE = this.scene.map.SIZE;
+    if (this.vx < 0) {
+      const pmx = this.mx - 1;
+      const pmy = this.my;
+      if (this.scene.map.tiles[pmy][pmx] != 0) {
+        const tile = {
+          x: pmx * SIZE + SIZE / 2,
+          y: pmy * SIZE + SIZE / 2,
+          w: SIZE,
+          h: SIZE,
+        };
+        this.scene.ctx.strokeStyle = "white";
+        this.scene.ctx.strokeRect(tile.x - SIZE/2, tile.y - SIZE/2, SIZE, SIZE);
+        if (this.crash(tile)) {
+          this.vx = 0;
+          this.x = tile.x + tile.w / 2 + this.w / 2 + 1;
         }
       }
     }

@@ -24,7 +24,7 @@ map1.loadMap(modelMap1);
 scene1.configureMap(map1);
 
 const pc = new Sprite({ x: 50, vx: 10 });
-const en1 = new Sprite({ x: 140, color: "red" });
+const en1 = new Sprite({ x: 160, vx: -10, color: "red" });
 const en2 = new Sprite({ y: 70, color: "red" });
 
 scene1.addSprite(pc);
