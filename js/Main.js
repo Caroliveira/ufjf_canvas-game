@@ -23,7 +23,7 @@ const map1 = new Map(10, 14, 32);
 map1.loadMap(modelMap1);
 scene1.configureMap(map1);
 
-const pc = new Sprite({ x: 50, vx: 10 });
+const pc = new Sprite({ x: 50, y: 90, vx: 10 });
 const en1 = new Sprite({ x: 160, vx: -10, color: "red" });
 const en2 = new Sprite({ x: 115, y: 70, vy: 10, color: "red" });
 const en3 = new Sprite({ x: 115, y: 160, vy: -10, color: "red" });

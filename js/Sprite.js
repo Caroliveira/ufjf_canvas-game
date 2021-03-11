@@ -50,17 +50,23 @@ export default class Sprite {
   }
 
   applyRestrictions(dt) {
-    this.applyRestrictionsRight(dt);
-    this.applyRestrictionsLeft(dt);
-    this.applyRestrictionsDown(dt);
-    this.applyRestrictionsUp(dt);
+    this.applyRestrictionsRight(this.mx + 1, this.my - 1);
+    this.applyRestrictionsRight(this.mx + 1, this.my);
+    this.applyRestrictionsRight(this.mx + 1, this.my + 1);
+    this.applyRestrictionsLeft(this.mx - 1, this.my - 1);
+    this.applyRestrictionsLeft(this.mx - 1, this.my);
+    this.applyRestrictionsLeft(this.mx - 1, this.my + 1);
+    this.applyRestrictionsDown(this.mx - 1, this.my + 1);
+    this.applyRestrictionsDown(this.mx, this.my + 1);
+    this.applyRestrictionsDown(this.mx + 1, this.my + 1);
+    this.applyRestrictionsUp(this.mx - 1, this.my - 1);
+    this.applyRestrictionsUp(this.mx, this.my - 1);
+    this.applyRestrictionsUp(this.mx + 1, this.my - 1);
   }
 
-  applyRestrictionsRight(dt) {
+  applyRestrictionsRight(pmx, pmy) {
     const SIZE = this.scene.map.SIZE;
     if (this.vx > 0) {
-      const pmx = this.mx + 1;
-      const pmy = this.my;
       if (this.scene.map.tiles[pmy][pmx] != 0) {
         const tile = {
           x: pmx * SIZE + SIZE / 2,
@@ -78,11 +84,9 @@ export default class Sprite {
     }
   }
 
-  applyRestrictionsLeft(dt) {
+  applyRestrictionsLeft(pmx, pmy) {
     const SIZE = this.scene.map.SIZE;
     if (this.vx < 0) {
-      const pmx = this.mx - 1;
-      const pmy = this.my;
       if (this.scene.map.tiles[pmy][pmx] != 0) {
         const tile = {
           x: pmx * SIZE + SIZE / 2,
@@ -100,11 +104,9 @@ export default class Sprite {
     }
   }
 
-  applyRestrictionsDown(dt) {
+  applyRestrictionsDown(pmx, pmy) {
     const SIZE = this.scene.map.SIZE;
     if (this.vy > 0) {
-      const pmx = this.mx;
-      const pmy = this.my + 1;
       if (this.scene.map.tiles[pmy][pmx] != 0) {
         const tile = {
           x: pmx * SIZE + SIZE / 2,
@@ -122,11 +124,9 @@ export default class Sprite {
     }
   }
 
-  applyRestrictionsUp(dt) {
+  applyRestrictionsUp(pmx, pmy) {
     const SIZE = this.scene.map.SIZE;
     if (this.vy < 0) {
-      const pmx = this.mx;
-      const pmy = this.my - 1;
       if (this.scene.map.tiles[pmy][pmx] != 0) {
         const tile = {
           x: pmx * SIZE + SIZE / 2,
