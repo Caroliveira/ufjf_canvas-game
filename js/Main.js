@@ -1,4 +1,5 @@
 import AssetManager from "./AssetManager.js";
+import Mixer from "./Mixer.js";
 import Scene from "./Scene.js";
 import Sprite from "./Sprite.js";
 
@@ -9,6 +10,8 @@ assets.loadImage("skelly", "assets/skelly.png");
 assets.loadImage("orc", "assets/orc.png");
 assets.loadAudio("coin", "assets/coin.wav");
 assets.loadAudio("boom", "assets/boom.wav");
+
+const mixer = new Mixer(10);
 
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
@@ -32,13 +35,10 @@ document.addEventListener("keydown", (evt) => {
       scene1.stop();
       break;
     case "c":
-      assets.getAudio("coin").play();
+      mixer.play(assets.getAudio("coin"));
       break;
     case "b":
-      assets.getAudio("boom").play();
-      break;
-
-    default:
+      mixer.play(assets.getAudio("boom"));
       break;
   }
 });
