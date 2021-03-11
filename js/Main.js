@@ -30,6 +30,9 @@ document.addEventListener("keydown", (evt) => {
     case "S":
       scene1.stop();
       break;
+    case "c":
+      assets.getAudio("coin").play();
+      break;
 
     default:
       break;
