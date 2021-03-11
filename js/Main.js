@@ -2,7 +2,7 @@ import AssetManager from "./AssetManager.js";
 import Map from "./Map.js";
 import Mixer from "./Mixer.js";
 import Scene from "./Scene.js";
-import Sprite from "./Sprite.js";
+import GenerateSprite from "./GenerateSprite.js";
 import modelMap1 from "../maps/map1.js";
 
 const mixer = new Mixer(10);
@@ -24,15 +24,17 @@ const map1 = new Map();
 map1.loadMap(modelMap1);
 scene1.configureMap(map1);
 
-const pc = new Sprite({ x: 50, y: 90, vx: 10 });
-const en1 = new Sprite({ x: 160, vx: -10, color: "red" });
-const en2 = new Sprite({ x: 115, y: 70, vy: 10, color: "red" });
-const en3 = new Sprite({ x: 115, y: 160, vy: -10, color: "red" });
+const generate = new GenerateSprite(scene1);
+generate.create();
+generate.create();
+generate.create();
+generate.create();
+generate.create();
 
-scene1.addSprite(pc);
-scene1.addSprite(en1);
-scene1.addSprite(en2);
-scene1.addSprite(en3);
+setInterval(() => {
+  console.log('Created')
+  generate.create();
+}, 4000)
 
 scene1.initiate();
 
