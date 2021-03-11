@@ -8,6 +8,7 @@ assets.loadImage("girl", "assets/girl.png");
 assets.loadImage("skelly", "assets/skelly.png");
 assets.loadImage("orc", "assets/orc.png");
 assets.loadAudio("coin", "assets/coin.wav");
+assets.loadAudio("boom", "assets/boom.wav");
 
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
@@ -32,6 +33,9 @@ document.addEventListener("keydown", (evt) => {
       break;
     case "c":
       assets.getAudio("coin").play();
+      break;
+    case "b":
+      assets.getAudio("boom").play();
       break;
 
     default:
