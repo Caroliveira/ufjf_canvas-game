@@ -21,6 +21,7 @@ export default class Scene {
       for (let s = 0; s < this.sprites.length; s++) {
         const sprite = this.sprites[s];
         sprite.draw(this.ctx);
+        sprite.applyRestrictions();
       }
     }
     this.ctx.fillStyle = "yellow";
