@@ -20,7 +20,7 @@ export default class Sprite {
 
   draw(ctx) {
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.w, this.h);
+    ctx.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
   }
 
   step(dt) {
@@ -30,10 +30,10 @@ export default class Sprite {
 
   crash(sprite) {
     return !(
-      this.x > sprite.x + sprite.w ||
-      this.x + this.w < sprite.x ||
-      this.y > sprite.y + sprite.h ||
-      this.y + this.h < sprite.y
+      this.x - this.w / 2 > sprite.x + sprite.w / 2 ||
+      this.x + this.w / 2 < sprite.x - sprite.w / 2 ||
+      this.y - this.h / 2 > sprite.y + sprite.h / 2 ||
+      this.y + this.h / 2 < sprite.y - sprite.h / 2
     );
   }
 }
