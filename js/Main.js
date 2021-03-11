@@ -23,15 +23,16 @@ const map1 = new Map(10, 14, 32);
 map1.loadMap(modelMap1);
 scene1.configureMap(map1);
 
-const pc = new Sprite({ vx: 10 });
-const en1 = new Sprite({ x: 140, w: 30, color: "red" });
-const en2 = new Sprite({ y: 40, w: 30, color: "red" });
+const pc = new Sprite({ x: 50, vx: 10 });
+const en1 = new Sprite({ x: 140, color: "red" });
+const en2 = new Sprite({ y: 70, color: "red" });
 
 scene1.addSprite(pc);
 scene1.addSprite(en1);
 scene1.addSprite(en2);
 
 scene1.initiate();
+
 document.addEventListener("keydown", (evt) => {
   switch (evt.key) {
     case "s":
