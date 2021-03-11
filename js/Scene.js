@@ -79,9 +79,11 @@ export default class Scene {
   onCrash(a, b) {
     if (!this.toRemove.includes(a)) {
       this.toRemove.push(a);
+      this.assets.play("boom");
     }
     if (!this.toRemove.includes(b)) {
       this.toRemove.push(b);
+      this.assets.play("boom");
     }
   }
 
