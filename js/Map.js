@@ -1,5 +1,5 @@
 export default class Map {
-  constructor(rows = 8, columns = 12, size = 32) {
+  constructor(rows = 10, columns = 14, size = 64) {
     this.ROWS = rows;
     this.COLUMNS = columns;
     this.SIZE = size;
@@ -18,21 +18,41 @@ export default class Map {
       for (let c = 0; c < this.COLUMNS; c++) {
         switch (this.tiles[r][c]) {
           case 1:
-            ctx.fillStyle = "grey";
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = "black";
-            break;
-          case 2:
-            ctx.fillStyle = "orange";
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = "black";
+            ctx.drawImage(
+              this.scene.assets.getImage("terrain"),
+              // Pega terreno: parede de pedra
+              9 * 59,
+              13 * 59,
+              // Dimensionamento da grade
+              59,
+              59,
+              // Localização do desenho
+              c * 64,
+              r * 64,
+              // Tamanho do desenho
+              64,
+              64
+            );
             break;
           default:
-            ctx.fillStyle = "black";
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = "grey";
+            ctx.drawImage(
+              this.scene.assets.getImage("terrain"),
+              // Pega terreno: chão
+              15 * 53,
+              5 * 53,
+              // Dimensionamento da grade
+              53,
+              53,
+              // Localização do desenho
+              c * 64,
+              r * 64,
+              // Tamanho do desenho
+              64,
+              64
+            );
         }
-        ctx.fillRect(c * this.SIZE, r * this.SIZE, this.SIZE, this.SIZE);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "black";
         ctx.strokeRect(c * this.SIZE, r * this.SIZE, this.SIZE, this.SIZE);
       }
     }

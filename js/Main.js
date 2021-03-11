@@ -11,15 +11,16 @@ const assets = new AssetManager(mixer);
 assets.loadImage("girl", "assets/girl.png");
 assets.loadImage("skelly", "assets/skelly.png");
 assets.loadImage("orc", "assets/orc.png");
+assets.loadImage("terrain", "assets/terrain_atlas.png");
 assets.loadAudio("coin", "assets/coin.wav");
 assets.loadAudio("boom", "assets/boom.wav");
 
 const canvas = document.querySelector("canvas");
-canvas.width = 14 * 32;
-canvas.height = 10 * 32;
+canvas.width = 14 * 64;
+canvas.height = 10 * 64;
 const scene1 = new Scene(canvas, assets);
 
-const map1 = new Map(10, 14, 32);
+const map1 = new Map();
 map1.loadMap(modelMap1);
 scene1.configureMap(map1);
 
