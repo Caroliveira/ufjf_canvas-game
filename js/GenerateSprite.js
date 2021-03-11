@@ -9,9 +9,9 @@ export default class GenerateSprite {
     const x = Math.floor(Math.random() * 14);
     const y = Math.floor(Math.random() * 10);
 
-    const position = {x: x*64, y:y*64};
+    const position = { x: x * 64 + 10, y: y * 64 + 10 };
     console.log(position);
-    if (this.scene.map.tiles[y][x] != 1) return position
+    if (this.scene.map.tiles[y][x] != 1) return position;
     this.generatePosition();
   }
 
