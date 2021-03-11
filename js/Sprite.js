@@ -50,32 +50,35 @@ export default class Sprite {
   }
 
   applyRestrictions(dt) {
-    this.applyRestrictionsRight(this.mx + 1, this.my - 1);
-    this.applyRestrictionsRight(this.mx + 1, this.my);
-    this.applyRestrictionsRight(this.mx + 1, this.my + 1);
-    this.applyRestrictionsLeft(this.mx - 1, this.my - 1);
-    this.applyRestrictionsLeft(this.mx - 1, this.my);
-    this.applyRestrictionsLeft(this.mx - 1, this.my + 1);
-    this.applyRestrictionsDown(this.mx - 1, this.my + 1);
-    this.applyRestrictionsDown(this.mx, this.my + 1);
-    this.applyRestrictionsDown(this.mx + 1, this.my + 1);
-    this.applyRestrictionsUp(this.mx - 1, this.my - 1);
-    this.applyRestrictionsUp(this.mx, this.my - 1);
-    this.applyRestrictionsUp(this.mx + 1, this.my - 1);
+    const applyAt = [
+      { pmx: this.mx + 1, pmy: this.my - 1, direction: "Right" },
+      { pmx: this.mx + 1, pmy: this.my, direction: "Right" },
+      { pmx: this.mx + 1, pmy: this.my + 1, direction: "Right" },
+      { pmx: this.mx - 1, pmy: this.my - 1, direction: "Left" },
+      { pmx: this.mx - 1, pmy: this.my, direction: "Left" },
+      { pmx: this.mx - 1, pmy: this.my + 1, direction: "Left" },
+      { pmx: this.mx - 1, pmy: this.my + 1, direction: "Down" },
+      { pmx: this.mx, pmy: this.my + 1, direction: "Down" },
+      { pmx: this.mx + 1, pmy: this.my + 1, direction: "Down" },
+      { pmx: this.mx - 1, pmy: this.my - 1, direction: "Up" },
+      { pmx: this.mx, pmy: this.my - 1, direction: "Up" },
+      { pmx: this.mx + 1, pmy: this.my - 1, direction: "Up" },
+    ];
+    for (const at of applyAt) {
+      const SIZE = this.scene.map.SIZE;
+      const tile = {
+        x: at.pmx * SIZE + SIZE / 2,
+        y: at.pmy * SIZE + SIZE / 2,
+        w: SIZE,
+        h: SIZE,
+      };
+      this[`applyRestrictions${at.direction}`](at.pmx, at.pmy, tile);
+    }
   }
 
-  applyRestrictionsRight(pmx, pmy) {
-    const SIZE = this.scene.map.SIZE;
+  applyRestrictionsRight(pmx, pmy, tile) {
     if (this.vx > 0) {
       if (this.scene.map.tiles[pmy][pmx] != 0) {
-        const tile = {
-          x: pmx * SIZE + SIZE / 2,
-          y: pmy * SIZE + SIZE / 2,
-          w: SIZE,
-          h: SIZE,
-        };
-        this.scene.ctx.strokeStyle = "white";
-        this.scene.ctx.strokeRect(tile.x - SIZE/2, tile.y - SIZE/2, SIZE, SIZE);
         if (this.crash(tile)) {
           this.vx = 0;
           this.x = tile.x - tile.w / 2 - this.w / 2 - 1;
@@ -84,18 +87,9 @@ export default class Sprite {
     }
   }
 
-  applyRestrictionsLeft(pmx, pmy) {
-    const SIZE = this.scene.map.SIZE;
+  applyRestrictionsLeft(pmx, pmy, tile) {
     if (this.vx < 0) {
       if (this.scene.map.tiles[pmy][pmx] != 0) {
-        const tile = {
-          x: pmx * SIZE + SIZE / 2,
-          y: pmy * SIZE + SIZE / 2,
-          w: SIZE,
-          h: SIZE,
-        };
-        this.scene.ctx.strokeStyle = "white";
-        this.scene.ctx.strokeRect(tile.x - SIZE/2, tile.y - SIZE/2, SIZE, SIZE);
         if (this.crash(tile)) {
           this.vx = 0;
           this.x = tile.x + tile.w / 2 + this.w / 2 + 1;
@@ -104,18 +98,9 @@ export default class Sprite {
     }
   }
 
-  applyRestrictionsDown(pmx, pmy) {
-    const SIZE = this.scene.map.SIZE;
+  applyRestrictionsDown(pmx, pmy, tile) {
     if (this.vy > 0) {
       if (this.scene.map.tiles[pmy][pmx] != 0) {
-        const tile = {
-          x: pmx * SIZE + SIZE / 2,
-          y: pmy * SIZE + SIZE / 2,
-          w: SIZE,
-          h: SIZE,
-        };
-        this.scene.ctx.strokeStyle = "white";
-        this.scene.ctx.strokeRect(tile.x - SIZE/2, tile.y - SIZE/2, SIZE, SIZE);
         if (this.crash(tile)) {
           this.vy = 0;
           this.y = tile.y - tile.h / 2 - this.h / 2 - 1;
@@ -124,18 +109,9 @@ export default class Sprite {
     }
   }
 
-  applyRestrictionsUp(pmx, pmy) {
-    const SIZE = this.scene.map.SIZE;
+  applyRestrictionsUp(pmx, pmy, tile) {
     if (this.vy < 0) {
       if (this.scene.map.tiles[pmy][pmx] != 0) {
-        const tile = {
-          x: pmx * SIZE + SIZE / 2,
-          y: pmy * SIZE + SIZE / 2,
-          w: SIZE,
-          h: SIZE,
-        };
-        this.scene.ctx.strokeStyle = "white";
-        this.scene.ctx.strokeRect(tile.x - SIZE/2, tile.y - SIZE/2, SIZE, SIZE);
         if (this.crash(tile)) {
           this.vy = 0;
           this.y = tile.y + tile.h / 2 + this.h / 2 + 1;
