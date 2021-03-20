@@ -29,7 +29,8 @@ input.configKeyboard({
   ArrowLeft: "MOVE_LEFT",
   ArrowRight: "MOVE_RIGHT",
   ArrowUp: "MOVE_UP",
-  ArrowDown: "MOVE_DOWN"
+  ArrowDown: "MOVE_DOWN",
+  " ": "NEXT_SCENE"
 })
 
 const game = new Game(canvas, assets, input);
