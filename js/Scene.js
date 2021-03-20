@@ -5,7 +5,7 @@ export default class Scene {
     this.ctx = canvas.getContext("2d");
     this.sprites = [];
     this.toRemove = [];
-    this.t0 = 0;
+    this.t0 = null;
     this.dt = 0;
     this.idAnim = null;
     this.assets = assets;
