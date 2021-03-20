@@ -78,10 +78,10 @@ scene1.initiate();
 document.addEventListener("keydown", (evt) => {
   switch (evt.key) {
     case "s":
-      scene1.initiate();
+      game.initiate();
       break;
     case "S":
-      scene1.stop();
+      game.stop();
       break;
     case "c":
       assets.play("coin");

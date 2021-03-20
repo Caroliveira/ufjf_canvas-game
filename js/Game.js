@@ -13,5 +13,22 @@ export default class Game {
       scene.canvas = this.canvas;
       scene.assets = this.assets;
       scene.input = this.input;
+      if(this.scene === null) {
+        this.scene = scene
+      }
+  }
+
+  selectScene(key) {
+      if(this.scenes.hes(key)) {
+          this.scene = this.scenes.get(key);
+      }
+  }
+
+  initiate() {
+    this.scene?.initiate();
+  }
+
+  stop() {
+    this.scene?.stop();
   }
 }
