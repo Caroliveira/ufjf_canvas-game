@@ -1,16 +1,11 @@
 export default class Scene {
   // Classe responsável por desenhar elementos na tela em uma animação
-  constructor(canvas, assets = null) {
+  constructor(canvas = null, assets = null) {
     this.canvas = canvas;
-    this.ctx = canvas.getContext("2d");
-    this.sprites = [];
-    this.toRemove = [];
-    this.t0 = null;
-    this.dt = 0;
-    this.idAnim = null;
+    this.ctx = canvas?.getContext("2d");
     this.assets = assets;
-    this.map = null;
     this.game = null;
+    this.setup();
   }
 
   draw() {
@@ -52,15 +47,19 @@ export default class Scene {
     this.checkCrash();
     this.removeSprites();
 
-    this.initiate();
+    if (this.running) {
+      this.initiate();
+    }
     this.t0 = t;
   }
 
   initiate() {
+    this.running = true;
     this.idAnim = requestAnimationFrame((t) => this.frame(t));
   }
 
   stop() {
+    this.running = false;
     cancelAnimationFrame(this.idAnim);
     this.t0 = null;
   }
@@ -101,5 +100,14 @@ export default class Scene {
   configureMap(map) {
     this.map = map;
     this.map.scene = this;
+  }
+
+  setup() {
+    this.sprites = [];
+    this.toRemove = [];
+    this.t0 = null;
+    this.dt = 0;
+    this.idAnim = null;
+    this.map = null;
   }
 }

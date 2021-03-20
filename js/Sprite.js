@@ -8,7 +8,8 @@ export default class Sprite {
     vx = 0,
     vy = 0,
     color = "white",
-    control = () => {}
+    control = () => {},
+    tags = []
   } = {}) {
     this.x = x;
     this.y = y;
@@ -21,6 +22,10 @@ export default class Sprite {
     this.mx = 0;
     this.my = 0;
     this.control = control;
+    this.tags = new Set();
+    tags.forEach((tag) => {
+      this.tags.add(tag);
+    });
   }
 
   draw(ctx) {
