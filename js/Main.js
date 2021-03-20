@@ -6,6 +6,7 @@ import GenerateSprite from "./GenerateSprite.js";
 import modelMap1 from "../maps/map1.js";
 import InputManager from "./InputManager.js";
 import Sprite from "./Sprite.js";
+import Game from "./Game.js";
 
 const input = new InputManager();
 const mixer = new Mixer(10);
@@ -29,7 +30,9 @@ input.configKeyboard({
   ArrowDown: "MOVE_DOWN"
 })
 
+const game = new Game(canvas, assets, input);
 const scene1 = new Scene(canvas, assets);
+game.addScene("game", scene1);
 
 const map1 = new Map();
 map1.loadMap(modelMap1);

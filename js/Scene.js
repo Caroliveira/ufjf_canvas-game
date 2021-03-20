@@ -10,6 +10,7 @@ export default class Scene {
     this.idAnim = null;
     this.assets = assets;
     this.map = null;
+    this.game = null;
   }
 
   draw() {
