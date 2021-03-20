@@ -8,20 +8,20 @@ export default class Game {
   }
 
   addScene(key, scene) {
-      this.scenes.set(key, scene);
-      scene.game = this;
-      scene.canvas = this.canvas;
-      scene.assets = this.assets;
-      scene.input = this.input;
-      if(this.scene === null) {
-        this.scene = scene
-      }
+    this.scenes.set(key, scene);
+    scene.game = this;
+    scene.canvas = this.canvas;
+    scene.assets = this.assets;
+    scene.input = this.input;
+    if (this.scene === null) {
+      this.scene = scene;
+    }
   }
 
   selectScene(key) {
-      if(this.scenes.hes(key)) {
-          this.scene = this.scenes.get(key);
-      }
+    if (this.scenes.has(key)) {
+      this.scene = this.scenes.get(key);
+    }
   }
 
   initiate() {

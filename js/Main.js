@@ -68,7 +68,7 @@ scene1.addSprite(en1);
 scene1.addSprite(en2);
 scene1.addSprite(en3);
 
-scene1.initiate();
+game.initiate();
 
 document.addEventListener("keydown", (evt) => {
   switch (evt.key) {
