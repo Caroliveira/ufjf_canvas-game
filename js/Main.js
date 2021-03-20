@@ -24,7 +24,9 @@ canvas.height = 10 * 64;
 
 input.configKeyboard({
   ArrowLeft: "MOVE_LEFT",
-  ArrowRight: "MOVE_RIGHT"
+  ArrowRight: "MOVE_RIGHT",
+  ArrowUp: "MOVE_UP",
+  ArrowDown: "MOVE_DOWN"
 })
 
 const scene1 = new Scene(canvas, assets);
@@ -41,6 +43,13 @@ pc.control = function(dt) {
     this.vx = 50; 
   } else {
     this.vx = 0;
+  }
+  if(input.commands.get("MOVE_UP")) {
+    this.vy = -50; 
+  } else if(input.commands.get("MOVE_DOWN")) {
+    this.vy = 50; 
+  } else {
+    this.vy = 0;
   }
 }
 scene1.addSprite(pc);
