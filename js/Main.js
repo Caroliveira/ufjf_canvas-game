@@ -4,7 +4,9 @@ import Mixer from "./Mixer.js";
 import Scene from "./Scene.js";
 import GenerateSprite from "./GenerateSprite.js";
 import modelMap1 from "../maps/map1.js";
+import InputManager from "./InputManager.js";
 
+const input = new InputManager();
 const mixer = new Mixer(10);
 const assets = new AssetManager(mixer);
 
@@ -18,6 +20,12 @@ assets.loadAudio("boom", "assets/boom.wav");
 const canvas = document.querySelector("canvas");
 canvas.width = 14 * 64;
 canvas.height = 10 * 64;
+
+input.configKeyboard({
+  ArrowLeft: "MOVE_LEFT",
+  ArrowRight: "MOVE_RIGHT"
+})
+
 const scene1 = new Scene(canvas, assets);
 
 const map1 = new Map();
