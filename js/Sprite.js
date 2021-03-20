@@ -8,6 +8,7 @@ export default class Sprite {
     vx = 0,
     vy = 0,
     color = "white",
+    control = () => {}
   } = {}) {
     this.x = x;
     this.y = y;
@@ -19,6 +20,7 @@ export default class Sprite {
     this.scene = null;
     this.mx = 0;
     this.my = 0;
+    this.control = control;
   }
 
   draw(ctx) {

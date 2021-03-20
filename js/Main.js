@@ -35,8 +35,7 @@ const map1 = new Map();
 map1.loadMap(modelMap1);
 scene1.configureMap(map1);
 
-const pc = new Sprite({x: 96, y: 96});
-pc.control = function(dt) {
+const pc = new Sprite({x: 96, y: 96, control: function(dt) {
   if(input.commands.get("MOVE_LEFT")) {
     this.vx = -50; 
   } else if(input.commands.get("MOVE_RIGHT")) {
@@ -51,15 +50,20 @@ pc.control = function(dt) {
   } else {
     this.vy = 0;
   }
-}
+}});
 scene1.addSprite(pc);
 
-// const generate = new GenerateSprite(scene1);
-// generate.create();
-// generate.create();
-// generate.create();
-// generate.create();
-// generate.create();
+function chasePC(dt) {
+  this.vx = 30*Math.sign(pc.x-this.x);
+  this.vy = 30*Math.sign(pc.y-this.y);
+}
+
+const en1 = new Sprite({x: 12 * 64 + 10, color: "red", control: chasePC});
+const en2 = new Sprite({x: 6 * 64 + 10, color: "red", control: chasePC});
+const en3 = new Sprite({x: 64 + 10, y: 3 * 64 + 10, color: "red", control: chasePC});
+scene1.addSprite(en1);
+scene1.addSprite(en2);
+scene1.addSprite(en3);
 
 setInterval(() => {
   console.log('Created')
