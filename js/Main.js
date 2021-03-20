@@ -68,11 +68,6 @@ scene1.addSprite(en1);
 scene1.addSprite(en2);
 scene1.addSprite(en3);
 
-setInterval(() => {
-  console.log('Created')
-  generate.create();
-}, 4000)
-
 scene1.initiate();
 
 document.addEventListener("keydown", (evt) => {
