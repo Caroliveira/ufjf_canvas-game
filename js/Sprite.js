@@ -33,11 +33,21 @@ export default class Sprite {
     );
   }
 
-  step(dt) {
+  control(dt) {
+
+  }
+
+  move(dt) {
     this.x = this.x + this.vx * dt;
     this.y = this.y + this.vy * dt;
     this.mx = Math.floor(this.x / this.scene.map.SIZE);
     this.my = Math.floor(this.y / this.scene.map.SIZE);
+  }
+
+  step(dt) {
+    this.control(dt);
+    this.move(dt);
+
   }
 
   crash(sprite) {
