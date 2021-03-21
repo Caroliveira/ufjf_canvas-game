@@ -50,7 +50,7 @@ export default class Sprite {
       this.scene.map.SIZE
     );
   }
-d
+
   control(dt) {}
 
   move(dt) {
