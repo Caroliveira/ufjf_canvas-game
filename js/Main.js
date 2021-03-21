@@ -1,10 +1,10 @@
-import AssetManager from "./AssetManager.js";
+import AssetManager from "./Managers/AssetManager.js";
 import Mixer from "./Mixer.js";
-import InputManager from "./InputManager.js";
+import InputManager from "./Managers/InputManager.js";
 import Game from "./Game.js";
-import SceneGame from "./SceneGame.js";
-import SceneLoading from "./SceneLoading.js";
-import SceneEnd from "./SceneEnd.js";
+import SceneGame from "./Scenes/SceneGame.js";
+import SceneLoading from "./Scenes/SceneLoading.js";
+import SceneEnd from "./Scenes/SceneEnd.js";
 
 const input = new InputManager();
 const mixer = new Mixer(10);

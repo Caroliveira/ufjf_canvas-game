@@ -1,6 +1,6 @@
 import Scene from "./Scene.js";
-import Sprite from "./Sprite.js";
-import Map from "./Map.js";
+import Sprite from "../Sprites/Sprite.js";
+import Map from "../Map.js";
 import modelMap1 from "../maps/map1.js";
 
 export default class SceneGame extends Scene {
