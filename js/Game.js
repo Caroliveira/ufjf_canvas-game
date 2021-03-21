@@ -6,6 +6,7 @@ export default class Game {
     this.input = input;
     this.scenes = new Map();
     this.scene = null;
+    this.points = 0;
   }
 
   addScene(key, scene) {

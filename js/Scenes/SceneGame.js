@@ -8,11 +8,12 @@ import DoorSprite from "../Sprites/DoorSprite.js";
 
 export default class SceneGame extends Scene {
   onCrash(a, b) {
-    if (a.tags.has("pc") && b.tags.has("coin")) {
+    if (a.tags.has("pc") && b.tags.has("door")) {
+      this.game.selectScene("victory");
+    } else if (a.tags.has("pc") && b.tags.has("coin")) {
       this.toRemove.push(b);
       this.assets.play("coin");
-      this.points += 10;
-      console.log(this.points)
+      this.game.points += 10;
     } else {
       if (a.tags.has("pc") || (a.tags.has("enemy") && b.tags.has("enemy"))) {
         if (!this.toRemove.includes(a)) {
