@@ -26,6 +26,10 @@ input.configKeyboard({
   ArrowRight: "MOVE_RIGHT",
   ArrowUp: "MOVE_UP",
   ArrowDown: "MOVE_DOWN",
+  a: "MOVE_LEFT",
+  d: "MOVE_RIGHT",
+  w: "MOVE_UP",
+  s: "MOVE_DOWN",
   " ": "NEXT_SCENE",
 });
 
