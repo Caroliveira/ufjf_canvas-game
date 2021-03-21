@@ -11,6 +11,8 @@ export default class SceneGame extends Scene {
     if (a.tags.has("pc") && b.tags.has("coin")) {
       this.toRemove.push(b);
       this.assets.play("coin");
+      this.points += 10;
+      console.log(this.points)
     } else {
       if (a.tags.has("pc") || (a.tags.has("enemy") && b.tags.has("enemy"))) {
         if (!this.toRemove.includes(a)) {

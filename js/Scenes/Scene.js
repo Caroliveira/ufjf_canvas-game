@@ -6,6 +6,7 @@ export default class Scene {
     this.assets = assets;
     this.game = null;
     this.setup();
+    this.points = 0;
   }
 
   draw() {
