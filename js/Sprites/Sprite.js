@@ -8,8 +8,8 @@ export default class Sprite {
     vx = 0,
     vy = 0,
     color = "white",
-    control = () => {},
-    tags = []
+    tags = [],
+    image,
   } = {}) {
     this.x = x;
     this.y = y;
@@ -19,42 +19,50 @@ export default class Sprite {
     this.vy = vy;
     this.color = color;
     this.scene = null;
+    
     this.mx = 0;
     this.my = 0;
-    this.control = control;
     this.tags = new Set();
     tags.forEach((tag) => {
       this.tags.add(tag);
     });
+    this.posture = 3;
+    this.postures = [
+      { row: 8, init: 0, end: 8, vel: 5, action: "up" },
+      { row: 9, init: 0, end: 8, vel: 5, action: "left" },
+      { row: 10, init: 0, end: 8, vel: 5, action: "down" },
+      { row: 11, init: 0, end: 8, vel: 5, action: "right" },
+    ];
+    this.image = image;
+    this.frame = this.postures[this.posture].init;
   }
 
-  draw(ctx) {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
-    ctx.strokeStyle = "blue";
-    ctx.strokeRect(
-      this.mx * this.scene.map.SIZE,
-      this.my * this.scene.map.SIZE,
+  draw(ctx, dt) {     
+    ctx.drawImage(
+      this.image,
+      Math.floor(this.frame) * 64,
+      this.postures[this.posture].row * 64,
+      64,
+      64,
+      this.x - this.scene.map.SIZE/2,
+      this.y - this.scene.map.SIZE/2 - this.h,
       this.scene.map.SIZE,
       this.scene.map.SIZE
     );
   }
-
-  control(dt) {
-
-  }
+d
+  control(dt) {}
 
   move(dt) {
     this.x = this.x + this.vx * dt;
     this.y = this.y + this.vy * dt;
-    this.mx = Math.floor(this.x / this.scene.map.SIZE);
+    this.mx = Math.floor(this.x / this.scene.map.SIZE) ;
     this.my = Math.floor(this.y / this.scene.map.SIZE);
   }
 
   step(dt) {
     this.control(dt);
     this.move(dt);
-
   }
 
   crash(sprite) {

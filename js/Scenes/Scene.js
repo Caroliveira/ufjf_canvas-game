@@ -16,12 +16,10 @@ export default class Scene {
     if (this.assets.finish()) {
       for (let s = 0; s < this.sprites.length; s++) {
         const sprite = this.sprites[s];
-        sprite.draw(this.ctx);
+        sprite.draw(this.ctx, this.dt);
         sprite.applyRestrictions();
       }
     }
-    this.ctx.fillStyle = "yellow";
-    this.ctx.fillText(this.assets.progress() ?? "", 10, 20);
   }
 
   addSprite(sprite) {
