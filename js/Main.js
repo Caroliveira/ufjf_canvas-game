@@ -15,6 +15,7 @@ assets.loadImage("skelly", "assets/skelly.png");
 assets.loadImage("orc", "assets/orc.png");
 assets.loadImage("terrain", "assets/terrain_atlas.png");
 assets.loadImage("coin", "assets/coin.png");
+assets.loadImage("door", "assets/door.png");
 assets.loadAudio("coin", "assets/coin.wav");
 assets.loadAudio("boom", "assets/boom.wav");
 

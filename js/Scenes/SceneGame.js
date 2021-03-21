@@ -4,6 +4,7 @@ import EnemySprite from "../Sprites/EnemySprite.js";
 import GenerateCoinSprite from "../Sprites/GenerateCoinSprite.js";
 import Map from "../Map.js";
 import modelMap1 from "../maps/map1.js";
+import DoorSprite from "../Sprites/DoorSprite.js";
 
 export default class SceneGame extends Scene {
   onCrash(a, b) {
@@ -68,5 +69,15 @@ export default class SceneGame extends Scene {
     for (let i = 0; i < 5; i++) {
       generate.create("coin", ["coin"]);
     }
+
+    const door = new DoorSprite({
+      x: 64 * 13 -16,
+      y: 64 * 9 - 10,
+      image: this.assets?.getImage("door"),
+      tags: ["door"],
+      posture: 0,
+      postures: [{ row: 0, init: 0, end: 4, vel: 5, action: "open" }]
+    });
+    this.addSprite(door);
   }
 }
