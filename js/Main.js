@@ -14,6 +14,7 @@ assets.loadImage("girl", "assets/girl.png");
 assets.loadImage("skelly", "assets/skelly.png");
 assets.loadImage("orc", "assets/orc.png");
 assets.loadImage("terrain", "assets/terrain_atlas.png");
+assets.loadImage("coin", "assets/coin.png");
 assets.loadAudio("coin", "assets/coin.wav");
 assets.loadAudio("boom", "assets/boom.wav");
 

@@ -1,21 +1,29 @@
 import Scene from "./Scene.js";
 import PCSprite from "../Sprites/PCSprite.js";
 import EnemySprite from "../Sprites/EnemySprite.js";
+import GenerateCoinSprite from "../Sprites/GenerateCoinSprite.js";
 import Map from "../Map.js";
 import modelMap1 from "../maps/map1.js";
 
 export default class SceneGame extends Scene {
   onCrash(a, b) {
-    if (!this.toRemove.includes(a)) {
-      this.toRemove.push(a);
-      this.assets.play("boom");
-    }
-    if (!this.toRemove.includes(b)) {
+    if (a.tags.has("pc") && b.tags.has("coin")) {
       this.toRemove.push(b);
-      this.assets.play("boom");
-    }
-    if (a.tags.has("pc") && b.tags.has("enemy")) {
-      this.game.selectScene("end");
+      this.assets.play("coin");
+    } else {
+      if (a.tags.has("pc") || (a.tags.has("enemy") && b.tags.has("enemy"))) {
+        if (!this.toRemove.includes(a)) {
+          this.toRemove.push(a);
+          this.assets.play("boom");
+        }
+        if (!this.toRemove.includes(b)) {
+          this.toRemove.push(b);
+          this.assets.play("boom");
+        }
+      }
+      if (a.tags.has("pc") && b.tags.has("enemy")) {
+        this.game.selectScene("end");
+      }
     }
   }
 
@@ -24,7 +32,7 @@ export default class SceneGame extends Scene {
     const map1 = new Map();
     map1.loadMap(modelMap1);
     this.configureMap(map1);
-    
+
     const pc = new PCSprite({
       x: 96,
       y: 96,
@@ -32,7 +40,6 @@ export default class SceneGame extends Scene {
       tags: ["pc"],
     });
     this.addSprite(pc);
-
 
     const en1 = new EnemySprite({
       x: 12 * 64 + 10,
@@ -56,5 +63,10 @@ export default class SceneGame extends Scene {
     this.addSprite(en1);
     this.addSprite(en2);
     this.addSprite(en3);
+
+    const generate = new GenerateCoinSprite(this);
+    for (let i = 0; i < 5; i++) {
+      generate.create("coin", ["coin"]);
+    }
   }
 }

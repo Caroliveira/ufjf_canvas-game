@@ -3,10 +3,7 @@ import Sprite from "./Sprite.js";
 export default class PCSprite extends Sprite {
   draw(ctx, dt) {
     if (this.vx || this.vy) {
-      this.frame =
-        this.frame > this.postures[this.posture].end
-          ? this.postures[this.posture].init
-          : this.frame + this.postures[this.posture].vel * dt;
+      this.frameRunning(dt);
     } else {
       this.frame = 0;
     }

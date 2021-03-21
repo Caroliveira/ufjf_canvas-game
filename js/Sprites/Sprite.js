@@ -10,6 +10,13 @@ export default class Sprite {
     color = "white",
     tags = [],
     image,
+    posture = 3,
+    postures = [
+      { row: 8, init: 0, end: 8, vel: 5, action: "up" },
+      { row: 9, init: 0, end: 8, vel: 5, action: "left" },
+      { row: 10, init: 0, end: 8, vel: 5, action: "down" },
+      { row: 11, init: 0, end: 8, vel: 5, action: "right" },
+    ]
   } = {}) {
     this.x = x;
     this.y = y;
@@ -26,15 +33,17 @@ export default class Sprite {
     tags.forEach((tag) => {
       this.tags.add(tag);
     });
-    this.posture = 3;
-    this.postures = [
-      { row: 8, init: 0, end: 8, vel: 5, action: "up" },
-      { row: 9, init: 0, end: 8, vel: 5, action: "left" },
-      { row: 10, init: 0, end: 8, vel: 5, action: "down" },
-      { row: 11, init: 0, end: 8, vel: 5, action: "right" },
-    ];
+    this.posture = posture;
+    this.postures = postures
     this.image = image;
     this.frame = this.postures[this.posture].init;
+  }
+
+  frameRunning(dt) {
+    this.frame =
+      this.frame > this.postures[this.posture].end
+        ? this.postures[this.posture].init
+        : this.frame + this.postures[this.posture].vel * dt;
   }
 
   draw(ctx, dt) {     

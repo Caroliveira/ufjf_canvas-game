@@ -2,10 +2,7 @@ import Sprite from "./Sprite.js";
 
 export default class EnemySprite extends Sprite {
   draw(ctx, dt) {
-    this.frame =
-      this.frame > this.postures[this.posture].end
-        ? this.postures[this.posture].init
-        : this.frame + this.postures[this.posture].vel * dt;
+    this.frameRunning(dt);
     super.draw(ctx, dt);
   }
 
