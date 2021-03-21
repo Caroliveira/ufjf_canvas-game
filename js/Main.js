@@ -4,7 +4,8 @@ import InputManager from "./Managers/InputManager.js";
 import Game from "./Game.js";
 import SceneGame from "./Scenes/SceneGame.js";
 import SceneLoading from "./Scenes/SceneLoading.js";
-import SceneEnd from "./Scenes/SceneEnd.js";
+import SceneOver from "./Scenes/SceneOver.js";
+import SceneVictory from "./Scenes/SceneVictory.js";
 
 const input = new InputManager();
 const mixer = new Mixer(10);
@@ -38,10 +39,12 @@ input.configKeyboard({
 const game = new Game(canvas, assets, input);
 const scene0 = new SceneLoading();
 const scene1 = new SceneGame();
-const scene2 = new SceneEnd();
+const scene2 = new SceneOver();
+const scene3 = new SceneVictory();
 game.addScene("loading", scene0);
 game.addScene("game", scene1);
 game.addScene("end", scene2);
+game.addScene("victory", scene3);
 
 game.initiate();
 

@@ -9,7 +9,7 @@ export default class SceneEnd extends Scene {
     this.ctx.fillStyle = "red";
     this.ctx.textAlign = "center";
     this.ctx.fillText(
-      "GAME OVER",
+      `GAME OVER`,
       this.canvas.width / 2,
       this.canvas.height / 2
     );

@@ -10,7 +10,7 @@ export default class DoorSprite extends Sprite {
   }
 
   draw(ctx, dt) {
-    if (this.scene.points >= 50) {
+    if (this.scene.game.points >= 50) {
       this.frameRunning(dt);
     }
     ctx.drawImage(
